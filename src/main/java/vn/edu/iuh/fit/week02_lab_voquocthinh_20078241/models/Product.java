@@ -23,19 +23,28 @@ public class Product {
     @Column(nullable = false)
     private ProductStatus status;
 
-    @OneToMany
+    @OneToMany(mappedBy = "product")
     private List<ProductImage> productImages;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderDetail> orderDetails;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductPrice> productPrices;
 
     public Product() {
     }
 
-    public Product(String name, String description, String unit, String manufacturer, ProductStatus status, List<ProductImage> productImages) {
+    public Product(long id, String name, String description, String unit, String manufacturer, ProductStatus status, List<ProductImage> productImages, List<OrderDetail> orderDetails, List<ProductPrice> productPrices) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.unit = unit;
         this.manufacturer = manufacturer;
         this.status = status;
         this.productImages = productImages;
+        this.orderDetails = orderDetails;
+        this.productPrices = productPrices;
     }
 
     public long getId() {
@@ -94,6 +103,22 @@ public class Product {
         this.productImages = productImages;
     }
 
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+    public List<ProductPrice> getProductPrices() {
+        return productPrices;
+    }
+
+    public void setProductPrices(List<ProductPrice> productPrices) {
+        this.productPrices = productPrices;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -104,6 +129,8 @@ public class Product {
                 ", manufacturer='" + manufacturer + '\'' +
                 ", status=" + status +
                 ", productImages=" + productImages +
+                ", orderDetails=" + orderDetails +
+                ", productPrices=" + productPrices +
                 '}';
     }
 }

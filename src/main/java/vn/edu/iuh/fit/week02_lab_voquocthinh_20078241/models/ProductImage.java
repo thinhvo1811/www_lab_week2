@@ -7,11 +7,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "product_image")
-@IdClass(ProductImage.ProductImagePK.class)
 public class ProductImage {
     @Id
-    @Column(name = "product_id")
-    private long productID;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
@@ -24,25 +24,26 @@ public class ProductImage {
     public ProductImage() {
     }
 
-    public ProductImage(long productID, String path, String alternative) {
-        this.productID = productID;
+    public ProductImage(Product product, long imageID, String path, String alternative) {
+        this.product = product;
+        this.imageID = imageID;
         this.path = path;
         this.alternative = alternative;
     }
 
-    public long getproductID() {
-        return productID;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setproductID(long productID) {
-        this.productID = productID;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public long getimageID() {
+    public long getImageID() {
         return imageID;
     }
 
-    public void setimageID(long imageID) {
+    public void setImageID(long imageID) {
         this.imageID = imageID;
     }
 
@@ -65,60 +66,10 @@ public class ProductImage {
     @Override
     public String toString() {
         return "ProductImage{" +
-                "productID=" + productID +
+                "product=" + product +
                 ", imageID=" + imageID +
                 ", path='" + path + '\'' +
                 ", alternative='" + alternative + '\'' +
                 '}';
-    }
-
-    public static class ProductImagePK implements Serializable{
-        private long productID;
-        private long imageID;
-
-        public ProductImagePK() {
-        }
-
-        public ProductImagePK(long productID, long imageID) {
-            this.productID = productID;
-            this.imageID = imageID;
-        }
-
-        public long getProductID() {
-            return productID;
-        }
-
-        public void setProductID(long productID) {
-            this.productID = productID;
-        }
-
-        public long getImageID() {
-            return imageID;
-        }
-
-        public void setImageID(long imageID) {
-            this.imageID = imageID;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof ProductImagePK)) return false;
-            ProductImagePK that = (ProductImagePK) o;
-            return getProductID() == that.getProductID() && getImageID() == that.getImageID();
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(getProductID(), getImageID());
-        }
-
-        @Override
-        public String toString() {
-            return "ProductImagePK{" +
-                    "productID=" + productID +
-                    ", imageID=" + imageID +
-                    '}';
-        }
     }
 }

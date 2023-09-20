@@ -2,41 +2,29 @@ package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.util.Objects;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "order_detail")
-public class OrderDetail {
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+@Table(name = "product_price")
+public class ProductPrice {
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    private double quantity;
+    @Id
+    @Column(name = "price_date_time")
+    private LocalDateTime priceDateTime;
     private double price;
     private String note;
 
-    public OrderDetail() {
+    public ProductPrice() {
     }
 
-    public OrderDetail(Order order, Product product, double quantity, double price, String note) {
-        this.order = order;
+    public ProductPrice(Product product, LocalDateTime priceDateTime, double price, String note) {
         this.product = product;
-        this.quantity = quantity;
+        this.priceDateTime = priceDateTime;
         this.price = price;
         this.note = note;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Product getProduct() {
@@ -47,12 +35,12 @@ public class OrderDetail {
         this.product = product;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public LocalDateTime getPriceDateTime() {
+        return priceDateTime;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void setPriceDateTime(LocalDateTime priceDateTime) {
+        this.priceDateTime = priceDateTime;
     }
 
     public double getPrice() {
@@ -73,10 +61,9 @@ public class OrderDetail {
 
     @Override
     public String toString() {
-        return "OrderDetail{" +
-                "order=" + order +
-                ", product=" + product +
-                ", quantity=" + quantity +
+        return "ProductPrice{" +
+                "product=" + product +
+                ", priceDateTime=" + priceDateTime +
                 ", price=" + price +
                 ", note='" + note + '\'' +
                 '}';

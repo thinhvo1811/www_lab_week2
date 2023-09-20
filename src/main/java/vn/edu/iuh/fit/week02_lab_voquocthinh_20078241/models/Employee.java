@@ -3,7 +3,7 @@ package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.enums.EmployeeStatus;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -16,7 +16,7 @@ public class Employee {
     @Column(name = "full_name", length = 150, nullable = false)
     private String fullname;
     @Column(nullable = false)
-    private Date dob;
+    private LocalDateTime dob;
     @Column(unique = true, length = 150)
     private String email;
     @Column(length = 15, nullable = false)
@@ -26,13 +26,14 @@ public class Employee {
     @Column(nullable = false)
     private EmployeeStatus status;
 
-    @OneToMany(mappedBy = "employeeID")
+    @OneToMany(mappedBy = "employee")
     private List<Order> orders;
 
     public Employee() {
     }
 
-    public Employee(String fullname, Date dob, String email, String phone, String address, EmployeeStatus status, List<Order> orders) {
+    public Employee(long id, String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status, List<Order> orders) {
+        this.id = id;
         this.fullname = fullname;
         this.dob = dob;
         this.email = email;
@@ -58,11 +59,11 @@ public class Employee {
         this.fullname = fullname;
     }
 
-    public Date getDob() {
+    public LocalDateTime getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDateTime dob) {
         this.dob = dob;
     }
 

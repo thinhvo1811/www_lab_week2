@@ -20,13 +20,14 @@ public class Customer {
     @Column(length = 250, nullable = false)
     private String address;
 
-    @OneToMany(mappedBy = "customerID")
+    @OneToMany(mappedBy = "customer")
     List<Order> orders;
 
     public Customer() {
     }
 
-    public Customer(String name, String email, String phone, String address, List<Order> orders) {
+    public Customer(long id, String name, String email, String phone, String address, List<Order> orders) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
