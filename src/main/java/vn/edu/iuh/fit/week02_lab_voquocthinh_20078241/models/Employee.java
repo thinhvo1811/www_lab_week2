@@ -7,7 +7,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
+@NamedQueries(
+        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e where e.status = ?1")
+)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +26,7 @@ public class Employee {
     private String phone;
     @Column(length = 250, nullable = false)
     private String address;
-    @Column(nullable = false)
+    @Column(columnDefinition = "int",nullable = false)
     private EmployeeStatus status;
 
     @OneToMany(mappedBy = "employee")
@@ -34,6 +37,16 @@ public class Employee {
 
     public Employee(long id, String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status, List<Order> orders) {
         this.id = id;
+        this.fullname = fullname;
+        this.dob = dob;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.status = status;
+        this.orders = orders;
+    }
+
+    public Employee(String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status, List<Order> orders) {
         this.fullname = fullname;
         this.dob = dob;
         this.email = email;

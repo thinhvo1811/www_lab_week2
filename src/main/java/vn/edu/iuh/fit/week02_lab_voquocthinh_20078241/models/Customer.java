@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class Customer {
     private String address;
 
     @OneToMany(mappedBy = "customer")
-    List<Order> orders;
+    private List<Order> orders;
 
     public Customer() {
     }

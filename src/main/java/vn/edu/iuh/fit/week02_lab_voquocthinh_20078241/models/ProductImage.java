@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_image")
+@Table(name = "product_images")
 public class ProductImage {
     @Id
     @ManyToOne

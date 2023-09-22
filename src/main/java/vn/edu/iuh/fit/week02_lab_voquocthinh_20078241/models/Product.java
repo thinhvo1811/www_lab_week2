@@ -6,7 +6,7 @@ import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.enums.ProductStatus;
 import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +16,11 @@ public class Product {
     private String name;
     @Column(length = 250, nullable = false)
     private String description;
-    @Column(length = 150, nullable = false)
+    @Column(length = 25, nullable = false)
     private String unit;
     @Column(name = "manufacturer_name",length = 150, nullable = false)
     private String manufacturer;
-    @Column(nullable = false)
+    @Column(columnDefinition = "int", nullable = false)
     private ProductStatus status;
 
     @OneToMany(mappedBy = "product")
