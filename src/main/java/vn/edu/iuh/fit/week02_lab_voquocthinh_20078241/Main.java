@@ -20,10 +20,10 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         MySessionFactory.getInstance();
-        EmployeeRepository employeeRepository = new EmployeeRepository();
-//        OrderRepository orderRepository = new OrderRepository();
+//        EmployeeRepository employeeRepository = new EmployeeRepository();
+        OrderRepository orderRepository = new OrderRepository();
 //        Boolean b = employeeRepository.insert(new Employee("a", LocalDateTime.now(), "e", "a", "a", EmployeeStatus.TERMINATED, null));
-        List<Employee> employees = employeeRepository.getAll();
+        List<Order> employees = orderRepository.getOrdersByPeriod(1L,Date.valueOf("2023-09-20"), Date.valueOf("2023-09-30"));
         employees.forEach(System.out::println);
 //        System.out.println(b);
 //        List<Employee> orders = employeeRepository.getAll();

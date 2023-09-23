@@ -35,7 +35,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(long id, String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status, List<Order> orders) {
+    public Employee(long id, String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status) {
         this.id = id;
         this.fullname = fullname;
         this.dob = dob;
@@ -43,17 +43,15 @@ public class Employee {
         this.phone = phone;
         this.address = address;
         this.status = status;
-        this.orders = orders;
     }
 
-    public Employee(String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status, List<Order> orders) {
+    public Employee(String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status) {
         this.fullname = fullname;
         this.dob = dob;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.status = status;
-        this.orders = orders;
     }
 
     public long getId() {
@@ -112,14 +110,6 @@ public class Employee {
         this.status = status;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public String toString() {
         return "Employee{" +
@@ -130,7 +120,6 @@ public class Employee {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", status=" + status +
-                ", orders=" + orders +
                 '}';
     }
 }

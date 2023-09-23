@@ -29,12 +29,11 @@ public class Order {
     public Order() {
     }
 
-    public Order(long id, LocalDateTime orderDate, Employee employee, Customer customer, List<OrderDetail> orderDetails) {
+    public Order(long id, LocalDateTime orderDate, Employee employee, Customer customer) {
         this.id = id;
         this.orderDate = orderDate;
         this.employee = employee;
         this.customer = customer;
-        this.orderDetails = orderDetails;
     }
 
     public long getId() {
@@ -69,13 +68,7 @@ public class Order {
         this.customer = customer;
     }
 
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
 
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
 
     @Override
     public String toString() {
@@ -84,7 +77,6 @@ public class Order {
                 ", orderDate=" + orderDate +
                 ", employee=" + employee +
                 ", customer=" + customer +
-                ", orderDetails=" + orderDetails +
                 '}';
     }
 }

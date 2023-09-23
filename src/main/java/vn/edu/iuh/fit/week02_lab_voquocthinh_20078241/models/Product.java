@@ -35,16 +35,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, String description, String unit, String manufacturer, ProductStatus status, List<ProductImage> productImages, List<OrderDetail> orderDetails, List<ProductPrice> productPrices) {
+    public Product(long id, String name, String description, String unit, String manufacturer, ProductStatus status) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.unit = unit;
         this.manufacturer = manufacturer;
         this.status = status;
-        this.productImages = productImages;
-        this.orderDetails = orderDetails;
-        this.productPrices = productPrices;
     }
 
     public long getId() {
@@ -95,30 +92,6 @@ public class Product {
         this.status = status;
     }
 
-    public List<ProductImage> getProductImages() {
-        return productImages;
-    }
-
-    public void setProductImages(List<ProductImage> productImages) {
-        this.productImages = productImages;
-    }
-
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
-
-    public List<ProductPrice> getProductPrices() {
-        return productPrices;
-    }
-
-    public void setProductPrices(List<ProductPrice> productPrices) {
-        this.productPrices = productPrices;
-    }
-
     @Override
     public String toString() {
         return "Product{" +
@@ -128,9 +101,6 @@ public class Product {
                 ", unit='" + unit + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
                 ", status=" + status +
-                ", productImages=" + productImages +
-                ", orderDetails=" + orderDetails +
-                ", productPrices=" + productPrices +
                 '}';
     }
 }

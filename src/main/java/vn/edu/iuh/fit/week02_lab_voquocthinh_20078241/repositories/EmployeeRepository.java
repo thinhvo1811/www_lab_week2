@@ -1,15 +1,19 @@
 package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.repositories;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.enums.EmployeeStatus;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Employee;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Order;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class EmployeeRepository extends GenericCRUD<Employee> {
+public class EmployeeRepository extends GenericCRUD<Employee>{
+    SessionFactory sessionFactory = MySessionFactory.getInstance().getSessionFactory();
     public void setStatus(Employee employee, EmployeeStatus status) {
         employee.setStatus(status);
     }
@@ -23,24 +27,5 @@ public class EmployeeRepository extends GenericCRUD<Employee> {
                 .getResultList();
         transaction.commit();
         return employees;
-    }
-    public List<Employee> getOrdersByPeriod() {
-        Transaction tr = null;
-        try (Session session = sessionFactory.openSession()){
-            tr = session.beginTransaction();
-            String sql = "SELECT emp_id,address FROM employees";
-            List<Object[]> list = session.createNativeQuery(sql, Object[].class).getResultList();
-            List<Employee> orders = new ArrayList<>();
-            for (Object[] o: list) {
-                orders.add(findByID(Employee.class,(long)o[0]).get());
-            }
-            tr.commit();
-            return orders;
-        } catch (Exception e) {
-            // TODO: handle exception
-//            logger.error(e.getMessage());
-            tr.rollback();
-        }
-        return null;
     }
 }

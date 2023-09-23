@@ -3,6 +3,8 @@ package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.repositories;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 public abstract class GenericCRUD<T>{
     protected SessionFactory sessionFactory;
-//    protected final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
 
     public GenericCRUD() {
@@ -27,8 +29,7 @@ public abstract class GenericCRUD<T>{
             return true;
         } catch (Exception e) {
             // TODO: handle exception
-            e.printStackTrace();
-//            logger.error(e.getMessage());
+            logger.error(e.getMessage());
             transaction.rollback();
         }
         return false;
@@ -43,8 +44,7 @@ public abstract class GenericCRUD<T>{
             return true;
         } catch (Exception e) {
             // TODO: handle exception
-            e.printStackTrace();
-//            logger.error(e.getMessage());
+            logger.error(e.getMessage());
             transaction.rollback();
         }
         return false;

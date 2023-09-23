@@ -26,13 +26,12 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(long id, String name, String email, String phone, String address, List<Order> orders) {
+    public Customer(long id, String name, String email, String phone, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.orders = orders;
     }
 
     public long getId() {
@@ -75,14 +74,6 @@ public class Customer {
         this.address = address;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
@@ -91,7 +82,6 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
-                ", orders=" + orders +
                 '}';
     }
 }
