@@ -2,6 +2,7 @@ package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.resources;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Product;
@@ -22,6 +23,14 @@ public class ProductResource {
     @Produces("application/json")
     public Response getAll(){
         List<Product> products = productService.getAll();
+        return Response.ok(products).build();
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/{keyword}")
+    public Response getProductsByKeyword(@PathParam("keyword") String keyword){
+        List<Product> products = productService.getProductsByKeyword(keyword);
         return Response.ok(products).build();
     }
 }

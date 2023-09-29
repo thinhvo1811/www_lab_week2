@@ -31,12 +31,12 @@ public class Main {
 //        List<Order> orders = employeeRepository.getOrdersByPeriod(1L,Date.valueOf("2023-09-20"), Date.valueOf("2023-09-30"));
 
 //        ProductRepository productRepository = new ProductRepository();
-//        List<Product> products = productRepository.getAll();
+//        List<Product> products = productRepository.getProductsByKeyword("Mũ");
 //
 //        products.forEach(System.out::println);
 
-        CustomerRepository customerRepository = new CustomerRepository();
-        List<Customer> customers = customerRepository.getAll();
-        customers.forEach(System.out::println);
+//        CustomerRepository customerRepository = new CustomerRepository();
+//        List<Customer> customers = customerRepository.getAll();
+//        customers.forEach(System.out::println);
     }
 }

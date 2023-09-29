@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProductService {
     public List<Product> getAll();
+
+    public List<Product> getProductsByKeyword(String keyword);
 }

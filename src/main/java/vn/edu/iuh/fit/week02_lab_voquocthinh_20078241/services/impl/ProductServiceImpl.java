@@ -17,4 +17,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAll() {
         return productRepository.getAll();
     }
+
+    @Override
+    public List<Product> getProductsByKeyword(String keyword) {
+        return productRepository.getProductsByKeyword(keyword);
+    }
 }
