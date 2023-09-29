@@ -7,6 +7,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
+@NamedQueries(
+        @NamedQuery(name = "Product.findAll", query = "select p from Product p where p.status = ?1")
+)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +45,18 @@ public class Product {
         this.unit = unit;
         this.manufacturer = manufacturer;
         this.status = status;
+    }
+
+    public Product(long id, String name, String description, String unit, String manufacturer, ProductStatus status, List<ProductImage> productImages, List<OrderDetail> orderDetails, List<ProductPrice> productPrices) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.unit = unit;
+        this.manufacturer = manufacturer;
+        this.status = status;
+        this.productImages = productImages;
+        this.orderDetails = orderDetails;
+        this.productPrices = productPrices;
     }
 
     public long getId() {
@@ -92,6 +107,30 @@ public class Product {
         this.status = status;
     }
 
+    public List<ProductImage> getProductImages() {
+        return productImages;
+    }
+
+    public void setProductImages(List<ProductImage> productImages) {
+        this.productImages = productImages;
+    }
+
+    public List<ProductPrice> getProductPrices() {
+        return productPrices;
+    }
+
+    public void setProductPrices(List<ProductPrice> productPrices) {
+        this.productPrices = productPrices;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -101,6 +140,9 @@ public class Product {
                 ", unit='" + unit + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
                 ", status=" + status +
+                ", productImages=" + productImages +
+                ", orderDetails=" + orderDetails +
+                ", productPrices=" + productPrices +
                 '}';
     }
 }

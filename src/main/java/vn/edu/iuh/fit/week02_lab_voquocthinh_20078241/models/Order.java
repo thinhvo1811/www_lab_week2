@@ -36,6 +36,14 @@ public class Order {
         this.customer = customer;
     }
 
+    public Order(long id, LocalDateTime orderDate, Employee employee, Customer customer, List<OrderDetail> orderDetails) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.employee = employee;
+        this.customer = customer;
+        this.orderDetails = orderDetails;
+    }
+
     public long getId() {
         return id;
     }
@@ -67,7 +75,6 @@ public class Order {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
 
 
     @Override

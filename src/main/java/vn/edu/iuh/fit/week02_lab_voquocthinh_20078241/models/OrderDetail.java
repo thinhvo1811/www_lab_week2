@@ -39,14 +39,6 @@ public class OrderDetail {
         this.order = order;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public double getQuantity() {
         return quantity;
     }
@@ -75,7 +67,6 @@ public class OrderDetail {
     public String toString() {
         return "OrderDetail{" +
                 "order=" + order +
-                ", product=" + product +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", note='" + note + '\'' +

@@ -31,14 +31,6 @@ public class ProductImage {
         this.alternative = alternative;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public long getImageID() {
         return imageID;
     }
@@ -66,7 +58,6 @@ public class ProductImage {
     @Override
     public String toString() {
         return "ProductImage{" +
-                "product=" + product +
                 ", imageID=" + imageID +
                 ", path='" + path + '\'' +
                 ", alternative='" + alternative + '\'' +

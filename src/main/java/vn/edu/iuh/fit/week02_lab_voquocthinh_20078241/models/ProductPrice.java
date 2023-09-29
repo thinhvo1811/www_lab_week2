@@ -27,14 +27,6 @@ public class ProductPrice {
         this.note = note;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public LocalDateTime getPriceDateTime() {
         return priceDateTime;
     }
@@ -62,7 +54,6 @@ public class ProductPrice {
     @Override
     public String toString() {
         return "ProductPrice{" +
-                "product=" + product +
                 ", priceDateTime=" + priceDateTime +
                 ", price=" + price +
                 ", note='" + note + '\'' +
