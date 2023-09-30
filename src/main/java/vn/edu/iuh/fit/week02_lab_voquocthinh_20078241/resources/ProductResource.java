@@ -23,13 +23,13 @@ public class ProductResource {
         return Response.ok(products).build();
     }
 
-//    @GET
-//    @Produces("application/json")
-//    @Path("/{id}")
-//    public Response getProductsByID(@PathParam("id") String id){
-//        List<Product> products = productService.getProductsByKeyword(id);
-//        return Response.ok(products).build();
-//    }
+    @GET
+    @Produces("application/json")
+    @Path("/{id}")
+    public Response getProductsByID(@PathParam("id") String id){
+        List<Product> products = productService.getProductsByKeyword(id);
+        return Response.ok(products).build();
+    }
 
     @GET
     @Produces("application/json")
