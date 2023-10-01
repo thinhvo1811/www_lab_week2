@@ -35,8 +35,8 @@ public class Main {
 //
 //        products.forEach(System.out::println);
 
-//        CustomerRepository customerRepository = new CustomerRepository();
-//        List<Customer> customers = customerRepository.getAll();
-//        customers.forEach(System.out::println);
+        CustomerRepository customerRepository = new CustomerRepository();
+        Customer customers = customerRepository.getCustomerByEmailAndPhone("abc","123");
+        System.out.println(customers);
     }
 }

@@ -22,4 +22,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getAll() {
         return customerRepository.getAll();
     }
+
+    @Override
+    public Customer getCustomerByEmailAndPhone(String email, String phone) {
+        return customerRepository.getCustomerByEmailAndPhone(email, phone);
+    }
 }

@@ -8,6 +8,7 @@ import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.CustomerService;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.impl.CustomerServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 @Path("/customers")
 public class CustomerResource {
@@ -32,6 +33,17 @@ public class CustomerResource {
         //ResponseEntity
         boolean b = customerService.insert(customer);
         if (b){
+            return Response.ok(customer).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/login")
+    public Response getCustomerByEmailAndPhone(@QueryParam("email") String email,@QueryParam("phone") String phone) {
+        Customer customer = customerService.getCustomerByEmailAndPhone(email, phone);
+        if (customer!=null) {
             return Response.ok(customer).build();
         }
         return Response.status(Response.Status.BAD_REQUEST).build();
