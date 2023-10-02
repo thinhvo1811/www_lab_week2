@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ProductService {
     public List<Product> getAll();
-
     public List<Product> getProductsByKeyword(String keyword);
+    public List<Product> getProductsByManufacturer(String manufacturer);
+    public List<String> getAllManufacturers();
 }

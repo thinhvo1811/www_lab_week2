@@ -43,4 +43,40 @@ public class ProductRepository extends GenericCRUD<Product>{
         }
         return null;
     }
+
+    public List<Product> getProductsByManufacturer(String manufacturer) {
+        Transaction tr = null;
+        try (Session session = sessionFactory.openSession()){
+            tr = session.beginTransaction();
+            String sql = "SELECT * from products WHERE manufacturer_name =  '"+manufacturer+"'";
+            List<Object[]> list = session.createNativeQuery(sql, Object[].class).getResultList();
+            List<Product> products = new ArrayList<>();
+            for (Object[] o: list) {
+                products.add(findByID(Product.class,o[0]).get());
+            }
+            tr.commit();
+            return products;
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error(e.getMessage());
+            tr.rollback();
+        }
+        return null;
+    }
+
+    public List<String> getAllManufacturers() {
+        Transaction tr = null;
+        try (Session session = sessionFactory.openSession()){
+            tr = session.beginTransaction();
+            String sql = "SELECT DISTINCT manufacturer_name from products";
+            List<String> list = session.createNativeQuery(sql, String.class).getResultList();
+            tr.commit();
+            return list;
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error(e.getMessage());
+            tr.rollback();
+        }
+        return null;
+    }
 }

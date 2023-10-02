@@ -2,6 +2,7 @@ package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.resources;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Customer;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Employee;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.EmployeeService;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.impl.EmployeeServiceImpl;
@@ -56,6 +57,17 @@ public class EmployeeResource {
     public Response delete(@PathParam("id") long id) {
         if (employeeService.delete(id))
             return Response.ok().build();
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/login")
+    public Response getEmployeeByEmailAndPhone(@QueryParam("email") String email,@QueryParam("phone") String phone) {
+        Employee employee = employeeService.getEmployeeByEmailAndPhone(email, phone);
+        if (employee!=null) {
+            return Response.ok(employee).build();
+        }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
 }

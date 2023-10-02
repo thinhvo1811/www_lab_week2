@@ -23,6 +23,14 @@ public class ProductResource {
         return Response.ok(products).build();
     }
 
+    @GET
+    @Produces("application/json")
+    @Path("/manufacturers")
+    public Response getAllManufacturers(){
+        List<String> products = productService.getAllManufacturers();
+        return Response.ok(products).build();
+    }
+
 //    @GET
 //    @Produces("application/json")
 //    @Path("/{id}")
@@ -36,6 +44,14 @@ public class ProductResource {
     @Path("/search")
     public Response getProductsByKeyword(@QueryParam("keyword") String keyword){
         List<Product> products = productService.getProductsByKeyword(keyword);
+        return Response.ok(products).build();
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/filter")
+    public Response getProductsByManufacturer(@QueryParam("manufacturer") String manufacturer){
+        List<Product> products = productService.getProductsByManufacturer(manufacturer);
         return Response.ok(products).build();
     }
 }

@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.enums.EmployeeStatus;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Customer;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Employee;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Order;
 
@@ -41,6 +42,23 @@ public class EmployeeRepository extends GenericCRUD<Employee>{
             }
             tr.commit();
             return orders;
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error(e.getMessage());
+            tr.rollback();
+        }
+        return null;
+    }
+
+    public Employee getEmployeeByEmailAndPhone(String email, String phone){
+        Transaction tr = null;
+        try (Session session = sessionFactory.openSession()){
+            tr = session.beginTransaction();
+            String sql = "SELECT * FROM employees WHERE email = '"+email+"' AND phone = '"+phone+"'";
+            List<Object[]> list = session.createNativeQuery(sql, Object[].class).getResultList();
+            Employee employee = findByID(Employee.class, list.get(0)[0]).get();
+            tr.commit();
+            return employee;
         } catch (Exception e) {
             // TODO: handle exception
             logger.error(e.getMessage());

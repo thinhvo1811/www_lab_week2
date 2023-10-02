@@ -46,6 +46,6 @@ public class CustomerResource {
         if (customer!=null) {
             return Response.ok(customer).build();
         }
-        return Response.status(Response.Status.BAD_REQUEST).build();
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
 }

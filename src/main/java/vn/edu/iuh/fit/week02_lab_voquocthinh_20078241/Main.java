@@ -25,18 +25,20 @@ public class Main {
 //        List<Order> orders = orderRepository.getOrdersByPeriod(Date.valueOf("2023-09-23"),Date.valueOf("2023-09-26"));
 
 //        EmployeeRepository employeeRepository = new EmployeeRepository();
+//        Employee employee = employeeRepository.getEmployeeByEmailAndPhone("c@gmail.com","a");
+//        System.out.println(employee);
 //        Boolean b = employeeRepository.insert(new Employee("a", LocalDateTime.now(), "e", "a", "a", EmployeeStatus.TERMINATED, null));
 //        System.out.println(b);
 //        List<Employee> orders = employeeRepository.getAll();
 //        List<Order> orders = employeeRepository.getOrdersByPeriod(1L,Date.valueOf("2023-09-20"), Date.valueOf("2023-09-30"));
 
 //        ProductRepository productRepository = new ProductRepository();
-//        List<Product> products = productRepository.getProductsByKeyword("Mũ");
+//        List<String> products = productRepository.getAllManufacturer();
 //
 //        products.forEach(System.out::println);
 
-        CustomerRepository customerRepository = new CustomerRepository();
-        Customer customers = customerRepository.getCustomerByEmailAndPhone("abc","123");
-        System.out.println(customers);
+//        CustomerRepository customerRepository = new CustomerRepository();
+//        Customer customers = customerRepository.getCustomerByEmailAndPhone("abc","123");
+//        System.out.println(customers);
     }
 }

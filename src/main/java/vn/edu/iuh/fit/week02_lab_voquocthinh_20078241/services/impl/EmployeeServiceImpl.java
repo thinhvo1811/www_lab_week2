@@ -56,4 +56,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getAll() {
         return employeeRepository.getAll();
     }
+
+    @Override
+    public Employee getEmployeeByEmailAndPhone(String email, String phone) {
+        return employeeRepository.getEmployeeByEmailAndPhone(email,phone);
+    }
 }

@@ -22,4 +22,14 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductsByKeyword(String keyword) {
         return productRepository.getProductsByKeyword(keyword);
     }
+
+    @Override
+    public List<Product> getProductsByManufacturer(String manufacturer) {
+        return productRepository.getProductsByManufacturer(manufacturer);
+    }
+
+    @Override
+    public List<String> getAllManufacturers() {
+        return productRepository.getAllManufacturers();
+    }
 }
