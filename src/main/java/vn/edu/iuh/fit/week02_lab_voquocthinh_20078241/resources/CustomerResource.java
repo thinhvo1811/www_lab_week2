@@ -4,6 +4,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Customer;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Employee;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Order;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.CustomerService;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.impl.CustomerServiceImpl;
 
@@ -38,6 +39,19 @@ public class CustomerResource {
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
+    @POST
+    @Produces("application/json")
+    @Consumes("application/json")
+    @Path("/update")
+    public Response update(Customer customer) {
+        //ResponseEntity
+        boolean b = customerService.update(customer);
+        if (b){
+            return Response.ok(customer).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
     @GET
     @Produces("application/json")
     @Path("/login")
@@ -45,6 +59,17 @@ public class CustomerResource {
         Customer customer = customerService.getCustomerByEmailAndPhone(email, phone);
         if (customer!=null) {
             return Response.ok(customer).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/orders/{id}")
+    public Response getOrdersByCustomerID(@PathParam("id") long custID) {
+        List<Order> orders = customerService.getOrdersByCustomerID(custID);
+        if (orders!=null) {
+            return Response.ok(orders).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }

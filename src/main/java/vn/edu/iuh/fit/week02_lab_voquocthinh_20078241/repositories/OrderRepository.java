@@ -9,6 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepository extends GenericCRUD<Order>{
+    public List<Order> getAll(){
+        Transaction transaction = null;
+        Session session = sessionFactory.openSession();
+        transaction = session.beginTransaction();
+        List<Order> list = session.createQuery("from Order", Order.class).getResultList();
+        transaction.commit();
+        return list;
+    }
+
     public List<Order> getOrdersByDate(Date date) {
         Transaction tr = null;
         try (Session session = sessionFactory.openSession()){

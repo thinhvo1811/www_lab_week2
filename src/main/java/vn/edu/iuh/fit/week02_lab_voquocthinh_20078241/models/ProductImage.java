@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ public class ProductImage {
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private Product product;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +31,14 @@ public class ProductImage {
         this.imageID = imageID;
         this.path = path;
         this.alternative = alternative;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public long getImageID() {
@@ -58,6 +68,7 @@ public class ProductImage {
     @Override
     public String toString() {
         return "ProductImage{" +
+                "product=" + product +
                 ", imageID=" + imageID +
                 ", path='" + path + '\'' +
                 ", alternative='" + alternative + '\'' +

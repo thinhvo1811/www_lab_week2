@@ -34,11 +34,15 @@ public class Main {
 
 //        ProductRepository productRepository = new ProductRepository();
 //        List<String> products = productRepository.getAllManufacturer();
+//        System.out.println(productRepository.getSoldQuantityByProductID(3L));
 //
 //        products.forEach(System.out::println);
 
-//        CustomerRepository customerRepository = new CustomerRepository();
-//        Customer customers = customerRepository.getCustomerByEmailAndPhone("abc","123");
+        CustomerRepository customerRepository = new CustomerRepository();
+//        Boolean customers = customerRepository.update(new Customer(2,"Vincent", "thinhvq18112002@gmail.com","0899774350","Bình Thuận"));
 //        System.out.println(customers);
+        List<Order> orders = customerRepository.getOrdersByCustomerID(1L);
+        orders.forEach(System.out::println);
+
     }
 }

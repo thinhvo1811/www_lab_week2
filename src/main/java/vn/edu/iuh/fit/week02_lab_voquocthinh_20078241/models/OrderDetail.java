@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -11,9 +12,11 @@ public class OrderDetail {
     @Id
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     private Order order;
     @Id
     @ManyToOne
+//    @JsonIgnore
     @JoinColumn(name = "product_id")
     private Product product;
     private double quantity;
@@ -37,6 +40,14 @@ public class OrderDetail {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public double getQuantity() {
@@ -67,6 +78,7 @@ public class OrderDetail {
     public String toString() {
         return "OrderDetail{" +
                 "order=" + order +
+                ", product=" + product +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", note='" + note + '\'' +

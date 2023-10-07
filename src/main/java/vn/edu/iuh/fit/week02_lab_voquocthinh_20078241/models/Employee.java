@@ -1,5 +1,9 @@
 package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.enums.EmployeeStatus;
 
@@ -28,7 +32,6 @@ public class Employee {
     private String address;
     @Column(columnDefinition = "int",nullable = false)
     private EmployeeStatus status;
-
     @OneToMany(mappedBy = "employee")
     private List<Order> orders;
 
@@ -121,6 +124,14 @@ public class Employee {
         this.status = status;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -131,6 +142,7 @@ public class Employee {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", status=" + status +
+                ", orders=" + orders +
                 '}';
     }
 }

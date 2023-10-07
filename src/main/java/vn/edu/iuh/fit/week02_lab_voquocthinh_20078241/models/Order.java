@@ -1,5 +1,9 @@
 package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -17,10 +21,12 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "emp_id")
+    @JsonIgnore
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "cust_id")
+    @JsonIgnore
     private Customer customer;
 
     @OneToMany(mappedBy = "order")
@@ -76,14 +82,19 @@ public class Order {
         this.customer = customer;
     }
 
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
                 ", orderDate=" + orderDate +
-                ", employee=" + employee +
-                ", customer=" + customer +
                 '}';
     }
 }

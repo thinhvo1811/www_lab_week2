@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.enums.ProductStatus;
 
@@ -123,12 +124,19 @@ public class Product {
         this.productPrices = productPrices;
     }
 
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
+//    public List<OrderDetail> getOrderDetails() {
+//        return orderDetails;
+//    }
 
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
+//    public void setOrderDetails(List<OrderDetail> orderDetails) {
+//        this.orderDetails = orderDetails;
+//    }
+
+    public double getSoldQuantity(){
+        double soldQuantity = 0;
+        for(int i = 0; i<orderDetails.size();i++)
+            soldQuantity += orderDetails.get(i).getQuantity();
+        return soldQuantity;
     }
 
     @Override

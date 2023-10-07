@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ public class ProductPrice {
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private Product product;
     @Id
     @Column(name = "price_date_time")
@@ -25,6 +27,14 @@ public class ProductPrice {
         this.priceDateTime = priceDateTime;
         this.price = price;
         this.note = note;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public LocalDateTime getPriceDateTime() {
@@ -54,6 +64,7 @@ public class ProductPrice {
     @Override
     public String toString() {
         return "ProductPrice{" +
+                "product=" + product +
                 ", priceDateTime=" + priceDateTime +
                 ", price=" + price +
                 ", note='" + note + '\'' +
