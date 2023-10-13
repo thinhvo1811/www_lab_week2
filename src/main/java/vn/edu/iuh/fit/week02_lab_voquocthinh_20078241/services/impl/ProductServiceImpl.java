@@ -5,6 +5,7 @@ import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.repositories.ProductReposi
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.ProductService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
@@ -31,5 +32,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<String> getAllManufacturers() {
         return productRepository.getAllManufacturers();
+    }
+
+    @Override
+    public Optional<Product> findByID(long id) {
+        return productRepository.findByID(Product.class, id);
     }
 }

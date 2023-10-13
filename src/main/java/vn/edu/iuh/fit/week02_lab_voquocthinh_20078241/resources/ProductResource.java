@@ -2,11 +2,13 @@ package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.resources;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Employee;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Product;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.ProductService;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.impl.ProductServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 @Path("/products")
 public class ProductResource {
@@ -21,6 +23,17 @@ public class ProductResource {
     public Response getAll(){
         List<Product> products = productService.getAll();
         return Response.ok(products).build();
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/{id}")
+    public Response getProduct(@PathParam("id") long eid) {
+        Optional<Product> proOpt = productService.findByID(eid);
+        if (proOpt.isPresent()) {
+            return Response.ok(proOpt.get()).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @GET
