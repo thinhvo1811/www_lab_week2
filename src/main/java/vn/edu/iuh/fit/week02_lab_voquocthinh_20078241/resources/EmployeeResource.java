@@ -5,6 +5,7 @@ import jakarta.ws.rs.core.Response;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Customer;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Employee;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Order;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Product;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.EmployeeService;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.impl.EmployeeServiceImpl;
 
@@ -48,6 +49,19 @@ public class EmployeeResource {
     public Response insert(Employee employee) {
         //ResponseEntity
         boolean b = employeeService.insert(employee);
+        if (b){
+            return Response.ok(employee).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+    @POST
+    @Produces("application/json")
+    @Consumes("application/json")
+    @Path("/update")
+    public Response update(Employee employee) {
+        //ResponseEntity
+        boolean b = employeeService.update(employee);
         if (b){
             return Response.ok(employee).build();
         }

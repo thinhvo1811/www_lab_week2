@@ -12,4 +12,7 @@ public interface ProductService {
     public List<Product> getProductsByManufacturer(String manufacturer);
     public List<String> getAllManufacturers();
     public Optional<Product> findByID(long id);
+    public boolean delete(long id);
+    public boolean insert(Product product);
+    public boolean update(Product product);
 }

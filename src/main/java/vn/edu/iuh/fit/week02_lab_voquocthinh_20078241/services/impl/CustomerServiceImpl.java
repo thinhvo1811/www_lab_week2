@@ -6,6 +6,7 @@ import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.repositories.CustomerRepos
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.CustomerService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
@@ -37,5 +38,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Order> getOrdersByCustomerID(long custID) {
         return customerRepository.getOrdersByCustomerID(custID);
+    }
+
+    @Override
+    public Optional<Customer> findByID(long id) {
+        return customerRepository.findByID(Customer.class, id);
     }
 }

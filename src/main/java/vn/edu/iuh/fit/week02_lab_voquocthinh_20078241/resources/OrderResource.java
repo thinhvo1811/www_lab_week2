@@ -1,9 +1,6 @@
 package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.resources;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Employee;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Order;
@@ -13,6 +10,7 @@ import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.impl.OrderService
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Path("/orders")
 public class OrderResource {
@@ -61,5 +59,41 @@ public class OrderResource {
             return Response.ok(orders).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @POST
+    @Produces("application/json")
+    @Consumes("application/json")
+    public Response insert(Order order) {
+        //ResponseEntity
+        boolean b = orderService.insert(order);
+        if (b){
+            return Response.ok(order).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+    @POST
+    @Produces("application/json")
+    @Consumes("application/json")
+    @Path("/update")
+    public Response update(Order order) {
+        //ResponseEntity
+        boolean b = orderService.update(order);
+        if (b){
+            return Response.ok(order).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/{id}")
+    public Response getOrder(@PathParam("id") long id) {
+        Optional<Order> orderOpt = orderService.findByID(id);
+        if (orderOpt.isPresent()) {
+            return Response.ok(orderOpt.get()).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 }
