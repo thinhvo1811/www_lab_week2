@@ -28,4 +28,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrdersByPeriod(Date from, Date to) {
         return orderRepository.getOrdersByPeriod(from, to);
     }
+
+    @Override
+    public List<Order> getOrdersByEmpAndPeriod(long empID, Date from, Date to) {
+        return orderRepository.getOrdersByEmpAndPeriod(empID,from,to);
+    }
 }

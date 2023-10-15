@@ -57,4 +57,24 @@ public class OrderRepository extends GenericCRUD<Order>{
         }
         return null;
     }
+
+    public List<Order> getOrdersByEmpAndPeriod(long empID, Date from, Date to) {
+        Transaction tr = null;
+        try (Session session = sessionFactory.openSession()){
+            tr = session.beginTransaction();
+            String sql = "SELECT * from orders WHERE emp_id = "+empID+" AND order_date BETWEEN '"+from+"' AND '"+to+"'";
+            List<Object[]> list = session.createNativeQuery(sql, Object[].class).getResultList();
+            List<Order> orders = new ArrayList<>();
+            for (Object[] o: list) {
+                orders.add(findByID(Order.class,o[0]).get());
+            }
+            tr.commit();
+            return orders;
+        } catch (Exception e) {
+            // TODO: handle exception
+            logger.error(e.getMessage());
+            tr.rollback();
+        }
+        return null;
+    }
 }

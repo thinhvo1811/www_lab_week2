@@ -21,8 +21,8 @@ public class Main {
     public static void main(String[] args) {
         MySessionFactory.getInstance();
 
-//        OrderRepository orderRepository = new OrderRepository();
-//        List<Order> orders = orderRepository.getOrdersByPeriod(Date.valueOf("2023-09-23"),Date.valueOf("2023-09-26"));
+        OrderRepository orderRepository = new OrderRepository();
+        List<Order> orders = orderRepository.getOrdersByPeriod(Date.valueOf("2023-09-23"),Date.valueOf("2023-09-26"));
 
 //        EmployeeRepository employeeRepository = new EmployeeRepository();
 //        Employee employee = employeeRepository.getEmployeeByEmailAndPhone("c@gmail.com","a");
@@ -38,10 +38,10 @@ public class Main {
 //
 //        products.forEach(System.out::println);
 
-        CustomerRepository customerRepository = new CustomerRepository();
+//        CustomerRepository customerRepository = new CustomerRepository();
 //        Boolean customers = customerRepository.update(new Customer(2,"Vincent", "thinhvq18112002@gmail.com","0899774350","Bình Thuận"));
 //        System.out.println(customers);
-        List<Order> orders = customerRepository.getOrdersByCustomerID(1L);
+//        List<Order> orders = customerRepository.getOrdersByCustomerID(1L);
         orders.forEach(System.out::println);
 
     }

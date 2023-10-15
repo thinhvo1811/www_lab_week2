@@ -9,4 +9,5 @@ public interface OrderService {
     public List<Order> getAll();
     public List<Order> getOrdersByDate(Date date);
     public List<Order> getOrdersByPeriod(Date from, Date to);
+    public List<Order> getOrdersByEmpAndPeriod(long empID, Date from, Date to);
 }
