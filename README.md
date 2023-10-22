@@ -68,12 +68,10 @@
 <p></p>
 - ✍ Khi đăng ký thành công sẽ tự động chuyển sang form đăng nhập hoặc khi chọn đăng nhập trên thanh navbar cũng có kết quả tương tự
 <p></p>
-- ✍ Chỉ đăng nhập bằng email và số điện thoại (Vì database được thiết kế không có mật khẩu cho cả khách hàng và nhân viên)
-<p></p>
 - ✍ Có 2 nút đăng nhập, 1 cho khách hàng và 1 cho nhân viên nên nếu tài khoản khách hàng mà chọn đăng nhập cho nhân viên thì sẽ không được và ngược lại
 <p></p>
 <img src="img/loginCustomer1.png"/>
-- ✍ Khi nhập email hoặc số điện thoại không chính xác thì sẽ báo lỗi cho người dùng
+- ✍ Khi nhập tên đăng nhập hoặc mật khẩu không chính xác thì sẽ báo lỗi cho người dùng
 <p></p>
 <img src="img/loginCustomer2.png"/>
 - ✍ Khi đăng nhập cho khách thành công thì sẽ chuyển navbar đăng ký và đăng nhập sang tên người đăng nhập
@@ -93,6 +91,12 @@
 - ✍ Khách hàng có thể cập nhật lại thông tin của mình
 <p></p>
 <img src="img/customerInfo.png"/>
+- ✍ Khi cập nhật email trùng với một email đã được đăng kí sẽ báo lỗi
+<p></p>
+<img src="img/customerInfo2.png"/>
+- ✍ Khi cập nhật thành công sẽ thông báo thành công
+<p></p>
+<img src="img/customerInfo3.png"/>
 8. Chức năng hiển thị đơn mua của khách hàng
 <p></p>
 - ✍ Khi chọn chức năng đơn mua sẽ hiển thị toàn bộ các đơn hàng đã mua của khách hàng 
