@@ -25,6 +25,9 @@ public class Customer {
     private String phone;
     @Column(length = 250, nullable = false)
     private String address;
+    @OneToOne
+    @JoinColumn(name = "user")
+    private User user;
 
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
@@ -45,6 +48,24 @@ public class Customer {
         this.email = email;
         this.phone = phone;
         this.address = address;
+    }
+
+    public Customer(String name, String email, String phone, String address, User user) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.user = user;
+    }
+
+    public Customer(long id, String name, String email, String phone, String address, User user, List<Order> orders) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.user = user;
+        this.orders = orders;
     }
 
     public Customer(long id, String name, String email, String phone, String address, List<Order> orders) {
@@ -96,6 +117,14 @@ public class Customer {
         this.address = address;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public List<Order> getOrders() {
         return orders;
     }
@@ -112,6 +141,7 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", user=" + user +
                 ", orders=" + orders +
                 '}';
     }

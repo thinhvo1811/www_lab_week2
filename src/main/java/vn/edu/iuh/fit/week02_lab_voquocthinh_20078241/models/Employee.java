@@ -32,6 +32,9 @@ public class Employee {
     private String address;
     @Column(columnDefinition = "int",nullable = false)
     private EmployeeStatus status;
+    @OneToOne
+    @JoinColumn(name = "user")
+    private User user;
     @OneToMany(mappedBy = "employee")
     private List<Order> orders;
 
@@ -65,6 +68,28 @@ public class Employee {
         this.phone = phone;
         this.address = address;
         this.status = status;
+        this.orders = orders;
+    }
+
+    public Employee(String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status, User user) {
+        this.fullname = fullname;
+        this.dob = dob;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.status = status;
+        this.user = user;
+    }
+
+    public Employee(long id, String fullname, LocalDateTime dob, String email, String phone, String address, EmployeeStatus status, User user, List<Order> orders) {
+        this.id = id;
+        this.fullname = fullname;
+        this.dob = dob;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.status = status;
+        this.user = user;
         this.orders = orders;
     }
 
@@ -124,6 +149,14 @@ public class Employee {
         this.status = status;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public List<Order> getOrders() {
         return orders;
     }
@@ -142,6 +175,7 @@ public class Employee {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", status=" + status +
+                ", user=" + user +
                 ", orders=" + orders +
                 '}';
     }

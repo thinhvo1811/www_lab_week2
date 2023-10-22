@@ -79,8 +79,8 @@ public class EmployeeResource {
     @GET
     @Produces("application/json")
     @Path("/login")
-    public Response getEmployeeByEmailAndPhone(@QueryParam("email") String email,@QueryParam("phone") String phone) {
-        Employee employee = employeeService.getEmployeeByEmailAndPhone(email, phone);
+    public Response getEmployeeByUsernameAndPassword(@QueryParam("username") String username,@QueryParam("password") String password) {
+        Employee employee = employeeService.getEmployeeByUsernameAndPassword(username, password);
         if (employee!=null) {
             return Response.ok(employee).build();
         }

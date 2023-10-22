@@ -2,22 +2,27 @@ package vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.resources;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
-import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Customer;
-import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Employee;
-import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Order;
-import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.Product;
+import org.json.JSONException;
+import org.json.JSONObject;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.enums.UserType;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.models.*;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.CustomerService;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.UserService;
 import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.impl.CustomerServiceImpl;
+import vn.edu.iuh.fit.week02_lab_voquocthinh_20078241.services.impl.UserServiceImpl;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Path("/customers")
 public class CustomerResource {
     private final CustomerService customerService;
+    private final UserService userService;
 
     public CustomerResource() {
         customerService = new CustomerServiceImpl();
+        userService = new UserServiceImpl();
     }
 
     @GET
@@ -31,11 +36,26 @@ public class CustomerResource {
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public Response insert(Customer customer) {
+    public Response insert(Object object) throws JSONException {
         //ResponseEntity
-        boolean b = customerService.insert(customer);
-        if (b){
-            return Response.ok(customer).build();
+        JSONObject jsonObject = new JSONObject(object.toString());
+
+        String username = jsonObject.getString("username");
+        String password = jsonObject.getString("password");
+        String name = jsonObject.getString("name");
+        String email = jsonObject.getString("email");
+        String phone = "0"+jsonObject.getString("phone");
+        String address = jsonObject.getString("address");
+
+        User user = new User(username, password, UserType.CUSTOMER);
+        Customer customer = new Customer(name, email, phone, address, user);
+
+        boolean isInsertUser = userService.insert(user);
+        if (isInsertUser){
+            boolean isInsertCustomer = customerService.insert(customer);
+            if (isInsertCustomer){
+                return Response.ok(customer).build();
+            }
         }
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
@@ -46,6 +66,8 @@ public class CustomerResource {
     @Path("/update")
     public Response update(Customer customer) {
         //ResponseEntity
+        customer.setUser(customerService.findByID(customer.getId()).get().getUser());
+        customer.setOrders(customerService.findByID(customer.getId()).get().getOrders());
         boolean b = customerService.update(customer);
         if (b){
             return Response.ok(customer).build();
@@ -56,8 +78,8 @@ public class CustomerResource {
     @GET
     @Produces("application/json")
     @Path("/login")
-    public Response getCustomerByEmailAndPhone(@QueryParam("email") String email,@QueryParam("phone") String phone) {
-        Customer customer = customerService.getCustomerByEmailAndPhone(email, phone);
+    public Response getCustomerByUsernameAndPassword(@QueryParam("username") String username,@QueryParam("password") String password) {
+        Customer customer = customerService.getCustomerByUsernameAndPassword(username, password);
         if (customer!=null) {
             return Response.ok(customer).build();
         }

@@ -30,11 +30,11 @@ public class EmployeeRepository extends GenericCRUD<Employee>{
         return employees;
     }
 
-    public Employee getEmployeeByEmailAndPhone(String email, String phone){
+    public Employee getEmployeeByUsernameAndPassword(String username, String password){
         Transaction tr = null;
         try (Session session = sessionFactory.openSession()){
             tr = session.beginTransaction();
-            String sql = "SELECT * FROM employees WHERE email = '"+email+"' AND phone = '"+phone+"'";
+            String sql = "SELECT * FROM employees e JOIN users u ON e.`user` = u.username WHERE u.username = '"+username+"' AND u.password = '"+password+"'";
             List<Object[]> list = session.createNativeQuery(sql, Object[].class).getResultList();
             Employee employee = findByID(Employee.class, list.get(0)[0]).get();
             tr.commit();

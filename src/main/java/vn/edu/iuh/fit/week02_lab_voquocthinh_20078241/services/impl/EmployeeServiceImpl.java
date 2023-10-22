@@ -60,7 +60,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getEmployeeByEmailAndPhone(String email, String phone) {
-        return employeeRepository.getEmployeeByEmailAndPhone(email,phone);
+    public Employee getEmployeeByUsernameAndPassword(String username, String password) {
+        return employeeRepository.getEmployeeByUsernameAndPassword(username, password);
     }
+
+
 }

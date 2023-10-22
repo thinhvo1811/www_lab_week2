@@ -14,5 +14,5 @@ public interface EmployeeService {
     public boolean activeEmp(long id);
     public Optional<Employee> findByID(long id);
     public List<Employee> getAll();
-    public Employee getEmployeeByEmailAndPhone(String email, String phone);
+    public Employee getEmployeeByUsernameAndPassword(String username, String password);
 }

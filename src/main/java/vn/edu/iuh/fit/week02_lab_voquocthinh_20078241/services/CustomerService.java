@@ -10,7 +10,7 @@ public interface CustomerService {
     public boolean insert(Customer customer);
     public boolean update(Customer customer);
     public List<Customer> getAll();
-    public Customer getCustomerByEmailAndPhone(String email, String phone);
+    public Customer getCustomerByUsernameAndPassword(String username, String password);
     public List<Order> getOrdersByCustomerID(long custID);
     public Optional<Customer> findByID(long id);
 }
